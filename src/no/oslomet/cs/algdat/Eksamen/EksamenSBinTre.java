@@ -94,13 +94,13 @@ public class EksamenSBinTre<T> {
             p = cmp < 0 ? p.venstre : p.høyre;     // flytter p
         }
 
-        // p er nå null, dvs. ute av treet, q er den siste vi passerte
+        // p er naa null, dvs. ute av treet, q er den siste vi passerte
 
         p = new Node<>(verdi,q);                   // oppretter en ny node
 
         if (q == null) rot = p;                  // p blir rotnode
         else if (cmp < 0) q.venstre = p;         // venstre barn til q
-        else q.høyre = p;                        // høyre barn til q
+        else q.høyre = p;                        // hoeyre barn til q
 
         antall++;                                // én verdi mer i treet
         return true;                             // vellykket innlegging
