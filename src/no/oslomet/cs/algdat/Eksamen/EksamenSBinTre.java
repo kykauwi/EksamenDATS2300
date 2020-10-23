@@ -1,10 +1,7 @@
 package no.oslomet.cs.algdat.Eksamen;
 
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class EksamenSBinTre<T> {
     private static final class Node<T>   // en indre nodeklasse
@@ -84,7 +81,12 @@ public class EksamenSBinTre<T> {
     }
 
     public boolean leggInn(T verdi) {
+        // Bruke programkode fra kompendie for aa opprette nye noder
+
+        // Teste og se hvilke endringer som trengs for aa opprette ny node uten feil pekere og feil i testen
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
+
     }
 
     public boolean fjern(T verdi) {

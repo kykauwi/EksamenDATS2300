@@ -6,6 +6,7 @@ package no.oslomet.cs.algdat.Eksamen;
 import no.oslomet.cs.algdat.Eksamen.EksamenSBinTre;
 
 import java.util.ArrayList;
+
 import java.util.Comparator;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicReference;
