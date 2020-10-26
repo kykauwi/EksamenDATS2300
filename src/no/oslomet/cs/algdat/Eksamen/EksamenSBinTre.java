@@ -114,21 +114,28 @@ public class EksamenSBinTre<T> {
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
+    // Denne ble loest med inspirasjon fra kompendiet 5.2.6: Soeking etter en verdi
     public int antall(T verdi) {
+        if (tom()){                                    // Starter ved aa kalle paa tom() metoden for aa sjekke om treet er tomt
+            return 0;
+        }
+        Node<T> p = rot;                             // Oppretter hjelpenode for aa løpe gjennom treet fra og med rot og initialiserer antall
+        int antall= 0;
 
-        // Starter ved aa kalle på tom() metoden for aa sjekke om treet er tomt
-
-        // Oppretter hjelpenode for aa løpe gjennom treet fra og med rot og initialiserer antall
-
-        // Bruker while loekke for aa loepe gjennom treet
-
-        // Bruker comp for aa sammenligne hoeyre og venstre
-
-        // if setninger for comp sine resultater
-
-        // returnerer antallet
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        while(p!=null){                             // Bruker while loekke for aa loepe gjennom treet
+            int cmp = comp.compare(verdi,p.verdi);  // Bruker comp for aa sammenligne hoeyre og venstre
+            if (cmp < 0){                           // if setninger for comp sine resultater
+                p= p.venstre;
+            }
+            else if(cmp>0){
+                p=p.høyre;
+            }
+            else {
+                p=p.høyre;
+                antall++;
+            }
+        }
+        return antall;                              // returnerer antallet
     }
 
     public void nullstill() {
