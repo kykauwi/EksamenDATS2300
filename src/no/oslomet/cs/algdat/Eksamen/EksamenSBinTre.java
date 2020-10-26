@@ -115,6 +115,19 @@ public class EksamenSBinTre<T> {
     }
 
     public int antall(T verdi) {
+
+        // Starter ved aa kalle på tom() metoden for aa sjekke om treet er tomt
+
+        // Oppretter hjelpenode for aa løpe gjennom treet fra og med rot og initialiserer antall
+
+        // Bruker while loekke for aa loepe gjennom treet
+
+        // Bruker comp for aa sammenligne hoeyre og venstre
+
+        // if setninger for comp sine resultater
+
+        // returnerer antallet
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
