@@ -156,19 +156,29 @@ public class EksamenSBinTre<T> {
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
-        // Bruke object sin Not Null for aa forsikre meg om at parameter ikke er null
+        Objects.requireNonNull(p,"Kan ikke være null");             // Bruke object sin Not Null for aa forsikre meg om at parameter ikke er null
 
-        // returnere null om p.forelder= null
-
-        // while loekke for aa loepe gjennom
-
-        // Hvis det er hoeyrebarn saa er foreldrenode neste
-
-        // Hvis det er et venstrebarn uten at forelder har hoeyrebarn er forelder neste
-
-        // hvis ikke settes p til sin forelder sin hoeyre
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        if (p.forelder==null){                                              // returnere null om p.forelder= null
+            return null;
+        }
+             if (p.forelder.høyre==p){                                      // Hvis det er hoeyrebarn saa er foreldrenode neste
+                return p.forelder;
+            }
+            else if (p.forelder.venstre==p && p.forelder.høyre==null){     // Hvis det er et venstrebarn uten at forelder har hoeyrebarn er forelder neste
+                return p.forelder;
+            }
+            else {
+                p=p.forelder.høyre;
+                while (p.venstre!=null || p.høyre!=null){                   // while loekke for aa loepe gjennom for aa komme lengst mulig ned mot venstre
+                    if (p.venstre!=null){
+                        p=p.venstre;
+                    }
+                    else{
+                        p=p.høyre;
+                    }
+                }
+                return p;                                                   // returnerer p dersom den kom til else setningen
+            }
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
