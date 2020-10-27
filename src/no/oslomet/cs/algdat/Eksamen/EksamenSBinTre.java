@@ -142,16 +142,17 @@ public class EksamenSBinTre<T> {
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
-    private static <T> Node<T> førstePostorden(Node<T> p) {     //Benytter meg her av kompendiet sin programkode 5.1.7 g
-        // Bruke object sin Not Null for aa forsikre meg om at parameter ikke er null
-
-        // Ettersom p er rot skal vi loope gjennom til vi finner det ytterste bladet til venstre
-
-        //if setninger som sjekker foerst om venstre barn er null saa hoeyre
-
-        // returnerer noden naar venstre og hoeyre barn er null.
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+    private static <T> Node<T> førstePostorden(Node<T> p) {         //Benytter meg her av kompendiet sin programkode 5.1.7 g
+        Objects.requireNonNull(p,"Kan ikke være null");     // Bruke object sin Not Null for aa forsikre meg om at parameter ikke er null
+        while(true){                                                // Ettersom p er rot skal vi loope gjennom til vi finner det ytterste bladet til venstre
+            if (p.venstre!=null){                                   //if setninger som sjekker foerst om venstre barn er null saa hoeyre
+                p=p.venstre;
+            }
+            else if (p.høyre!=null){
+                p=p.høyre;
+            }
+            else return p;                                          // returnerer noden naar venstre og hoeyre barn er null.
+        }
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
