@@ -142,7 +142,7 @@ public class EksamenSBinTre<T> {
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
-    private static <T> Node<T> førstePostorden(Node<T> p) {     //Benytter meg her av kompendiet sin programkode 5.1.7
+    private static <T> Node<T> førstePostorden(Node<T> p) {     //Benytter meg her av kompendiet sin programkode 5.1.7 g
         // Bruke object sin Not Null for aa forsikre meg om at parameter ikke er null
 
         // Ettersom p er rot skal vi loope gjennom til vi finner det ytterste bladet til venstre
@@ -155,6 +155,18 @@ public class EksamenSBinTre<T> {
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
+        // Bruke object sin Not Null for aa forsikre meg om at parameter ikke er null
+
+        // returnere null om p.forelder= null
+
+        // while loekke for aa loepe gjennom
+
+        // Hvis det er hoeyrebarn saa er foreldrenode neste
+
+        // Hvis det er et venstrebarn uten at forelder har hoeyrebarn er forelder neste
+
+        // hvis ikke settes p til sin forelder sin hoeyre
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
