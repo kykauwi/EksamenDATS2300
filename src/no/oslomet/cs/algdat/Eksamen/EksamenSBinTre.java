@@ -182,12 +182,12 @@ public class EksamenSBinTre<T> {
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
-        // Opprette rotnode som skal være utgangspunkt for aa kalle paa nestePostorden
+        Node<T> p = førstePostorden(rot);   // Opprette rotnode som skal være utgangspunkt for aa kalle paa nestePostorden
 
-        // ha loekke som kjoeres gjennom hele treet
-        // legge til verdi i oppgaven
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        while (p!=null){                    // ha loekke som kjoeres gjennom hele treet
+            oppgave.utførOppgave(p.verdi);  // legge til verdi i oppgaven
+            p=nestePostorden(p);
+        }
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
@@ -195,13 +195,13 @@ public class EksamenSBinTre<T> {
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
-        //kalle paa metoden saa lenge venstre ikke er null
-
-        // kalle paa metoden saa lenge hoeyre ikke er null
-
-        // utfoer oppgave
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        if (p.venstre!=null){                     //kalle paa metoden saa lenge venstre ikke er null
+            postordenRecursive(p.venstre,oppgave);
+        }
+        if(p.høyre!=null){                          // kalle paa metoden saa lenge hoeyre ikke er null
+            postordenRecursive(p.høyre,oppgave);
+        }
+        oppgave.utførOppgave(p.verdi);              // utfoer oppgave
     }
 
     public ArrayList<T> serialize() {
