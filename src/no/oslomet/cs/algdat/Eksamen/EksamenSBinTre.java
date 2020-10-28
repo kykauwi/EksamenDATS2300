@@ -204,29 +204,36 @@ public class EksamenSBinTre<T> {
         oppgave.utførOppgave(p.verdi);              // utfoer oppgave
     }
 
-    public ArrayList<T> serialize() {
-        // foerst sjekke om treet er tomt
+    public ArrayList<T> serialize() {                   // Loest ved hjelp av programkode over 5.1.6 a) fra kompendiet
+        if (tom()){                                     // foerst sjekke om treet er tomt
+            return null;
+        }
 
-        // Opprette en koe og en liste det skal legges inn i
+        Queue<Node<T>> koe = new ArrayDeque<>();        // Opprette en koe og en liste det skal legges inn i
+        ArrayList<T> returner = new ArrayList<>();
         // Starte med å legge rot inn i koe
+        koe.add(rot);
 
-        // saa lenge koeen ikke er tom skal loekka kjoeres
-        // Opprette hjelpenode fra element i koeen
-
-        // if setninger som sjekker om venstre og hoeyre barn er null og legger inn i listen
-
-        // returnerer listen
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        while (!koe.isEmpty()){                         // saa lenge koeen ikke er tom skal loekka kjoeres
+            Node<T> p = koe.poll();                     // Opprette hjelpenode fra element i koeen
+            returner.add(p.verdi);
+            if (p.venstre!=null){                       // if setninger som sjekker om venstre og hoeyre barn er null og legger inn i koeen
+                koe.add(p.venstre);
+            }
+            if (p.høyre != null){
+                koe.add(p.høyre);
+            }
+        }
+        return returner;                                // returnerer listen
     }
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
-        //opprette objekt av treet
+        EksamenSBinTre<K> tre = new EksamenSBinTre<>(c);    //opprette objekt av treet
 
-        // for loekke som loeper gjennom listen som tas inn og leger inn verdien til elementet
-
-        // returnerer treet
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        for (K p: data ){                                   // for loekke som loeper gjennom listen som tas inn og legger inn elementet
+            tre.leggInn(p);
+        }
+        return tre;                                          // returnerer treet
     }
 
 
