@@ -205,10 +205,27 @@ public class EksamenSBinTre<T> {
     }
 
     public ArrayList<T> serialize() {
+        // foerst sjekke om treet er tomt
+
+        // Opprette en koe og en liste det skal legges inn i
+        // Starte med å legge rot inn i koe
+
+        // saa lenge koeen ikke er tom skal loekka kjoeres
+        // Opprette hjelpenode fra element i koeen
+
+        // if setninger som sjekker om venstre og hoeyre barn er null og legger inn i listen
+
+        // returnerer listen
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
+        //opprette objekt av treet
+
+        // for loekke som loeper gjennom listen som tas inn og leger inn verdien til elementet
+
+        // returnerer treet
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
