@@ -106,7 +106,7 @@ public class EksamenSBinTre<T> {
         return true;                             // vellykket innlegging
     }
 
-    public boolean fjern(T verdi) {
+    public boolean fjern(T verdi) {       // Benytte meg av programkode 5.2.8.b)
         if (verdi == null) return false;  // treet har ingen nullverdier
 
         Node<T> p = rot, q = null;   // q skal være forelder til p
@@ -115,10 +115,12 @@ public class EksamenSBinTre<T> {
         {
             int cmp = comp.compare(verdi,p.verdi);      // sammenligner
             if (cmp < 0) {
-                q = p; p = p.venstre;
+                q = p;
+                p = p.venstre;
             }      // går til venstre
             else if (cmp > 0) {
-                q = p; p = p.høyre;
+                q = p;
+                p = p.høyre;
             }   // går til høyre
             else break;    // den søkte verdien ligger i p
         }
@@ -127,9 +129,19 @@ public class EksamenSBinTre<T> {
         if (p.venstre == null || p.høyre == null)  // Tilfelle 1) og 2)
         {
             Node<T> b = p.venstre != null ? p.venstre : p.høyre;  // b for barn
-            if (p == rot) rot = b;
-            else if (p == q.venstre) q.venstre = b;
-            else q.høyre = b;
+            if (p == rot) {
+                rot = b;
+            }
+            else if (p == q.venstre){
+                q.venstre = b;
+            }
+            else {
+                q.høyre = b;
+            }
+            if (b!=null){           // skal oppdateres dersom noden hadde barn
+                b.forelder=q;
+            }
+
         }
         else  // Tilfelle 3)
         {
@@ -139,10 +151,11 @@ public class EksamenSBinTre<T> {
                 s = r;    // s er forelder til r
                 r = r.venstre;
             }
-
             p.verdi = r.verdi;   // kopierer verdien i r til p
 
-            if (s != p) s.venstre = r.høyre;
+            if (s != p) {
+                s.venstre = r.høyre;
+            }
             else s.høyre = r.høyre;
         }
 
@@ -150,7 +163,7 @@ public class EksamenSBinTre<T> {
         return true;
 
            // det er nå én node mindre i treet
-            // Benytte meg av programkode 5.2.8.b)
+
             // Gjoere endringer for aa faa testen til aa fungere, fikse foreldrepekere
 
     }
@@ -199,18 +212,31 @@ public class EksamenSBinTre<T> {
     public void nullstill() {
             // tanken er aa traversere postorden
             //først sjekk at treet ikke allerede er tomt
-
+        if (tom()){
+            return;
+        }
             //opprettehjelpenode ved hjelp av metoden foerstePostorden og forelder som er roten
+        Node<T> p = førstePostorden(rot);
+        Node<T> q = p.forelder;
+        q.venstre=null;
+        q.høyre=null;
+        q=null;
 
             // loekke som skal kjoeres saa lenge treet ikke er tomt
-
+        while(p!=null){
+            q=p;
+            p.venstre=null;
+            p.høyre=null;
+            p.forelder=null;
+            p= nestePostorden(q);
+        }
             // sjekke om jeg skal fjerne venstre eller hoeyrebarn
-
+        rot=null;
+        antall=0;
             // sette node til neste i postorden
 
             // fjerne rot og oppdatere antall
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {         //Benytter meg her av kompendiet sin programkode 5.1.7 g
