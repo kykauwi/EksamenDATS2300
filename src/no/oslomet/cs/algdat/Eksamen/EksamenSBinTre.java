@@ -156,6 +156,13 @@ public class EksamenSBinTre<T> {
     }
 
     public int fjernAlle(T verdi) {
+
+        // ha en sjekk som sjekker at input ikke er null eller treet er tomt
+
+        // en while loekke som kjøres så lenge fjern metoden returnerer true
+        // inni loekken skal den telle antall ganger verdi fjernes fra treet
+
+        // returnerer antall
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
@@ -185,6 +192,19 @@ public class EksamenSBinTre<T> {
     }
 
     public void nullstill() {
+            // tanken er aa traversere postorden
+            //først sjekk at treet ikke allerede er tomt
+
+            //opprettehjelpenode ved hjelp av metoden foerstePostorden og forelder som er roten
+
+            // loekke som skal kjoeres saa lenge treet ikke er tomt
+
+            // sjekke om jeg skal fjerne venstre eller hoeyrebarn
+
+            // sette node til neste i postorden
+
+            // fjerne rot og oppdatere antall
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
