@@ -106,7 +106,7 @@ public class EksamenSBinTre<T> {
         return true;                             // vellykket innlegging
     }
 
-    public boolean fjern(T verdi) {       // Benytte meg av programkode 5.2.8.b)
+    public boolean fjern(T verdi) {       // Benyttet meg av programkode 5.2.8.b)
         if (verdi == null) return false;  // treet har ingen nullverdier
 
         Node<T> p = rot, q = null;   // q skal være forelder til p
@@ -161,11 +161,6 @@ public class EksamenSBinTre<T> {
 
         antall--;   // det er nå én node mindre i treet
         return true;
-
-           // det er nå én node mindre i treet
-
-            // Gjoere endringer for aa faa testen til aa fungere, fikse foreldrepekere
-
     }
 
     public int fjernAlle(T verdi) {
@@ -216,20 +211,29 @@ public class EksamenSBinTre<T> {
             return;
         }
             //opprettehjelpenode ved hjelp av metoden foerstePostorden og forelder som er roten
-        Node<T> p = førstePostorden(rot);
-        Node<T> q = p.forelder;
-        q.venstre=null;
-        q.høyre=null;
-        q=null;
-
-            // loekke som skal kjoeres saa lenge treet ikke er tomt
-        while(p!=null){
-            q=p;
-            p.venstre=null;
-            p.høyre=null;
-            p.forelder=null;
-            p= nestePostorden(q);
+        Node<T> p = null;
+        Node<T> q =null;
+        if (antall==1){
+            rot=null;
+            antall=0;
+            return;
         }
+        if (antall>0) {
+            p = førstePostorden(rot);
+            q = p.forelder;
+        }
+            // loekke som skal kjoeres saa lenge treet ikke er tomt
+            while (p != null) {
+                if (p == q.venstre) {
+                    q.venstre = null;
+                    q.verdi = null;
+                } else {
+                    q.høyre = null;
+                    q.verdi = null;
+                }
+                p = førstePostorden(rot);
+            }
+
             // sjekke om jeg skal fjerne venstre eller hoeyrebarn
         rot=null;
         antall=0;
@@ -240,13 +244,17 @@ public class EksamenSBinTre<T> {
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {         //Benytter meg her av kompendiet sin programkode 5.1.7 g
-        Objects.requireNonNull(p,"Kan ikke være null");     // Bruke object sin Not Null for aa forsikre meg om at parameter ikke er null
+       // Objects.requireNonNull(p,"Kan ikke være null");     // Bruke object sin Not Null for aa forsikre meg om at parameter ikke er null
+
         while(true){                                                // Ettersom p er rot skal vi loope gjennom til vi finner det ytterste bladet til venstre
             if (p.venstre!=null){                                   //if setninger som sjekker foerst om venstre barn er null saa hoeyre
                 p=p.venstre;
             }
             else if (p.høyre!=null){
                 p=p.høyre;
+            }
+            else if (p==null){
+                return null;
             }
             else return p;                                          // returnerer noden naar venstre og hoeyre barn er null.
         }
