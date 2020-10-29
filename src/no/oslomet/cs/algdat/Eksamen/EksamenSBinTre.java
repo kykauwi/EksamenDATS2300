@@ -107,6 +107,10 @@ public class EksamenSBinTre<T> {
     }
 
     public boolean fjern(T verdi) {
+
+            // Benytte meg av programkode 5.2.8.b)
+            // Gjoere endringer for aa faa testen til aa fungere, fikse foreldrepekere
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
@@ -119,6 +123,7 @@ public class EksamenSBinTre<T> {
         if (tom()){                                    // Starter ved aa kalle paa tom() metoden for aa sjekke om treet er tomt
             return 0;
         }
+
         Node<T> p = rot;                             // Oppretter hjelpenode for aa løpe gjennom treet fra og med rot og initialiserer antall
         int antall= 0;
 
@@ -161,10 +166,10 @@ public class EksamenSBinTre<T> {
         if (p.forelder==null){                                              // returnere null om p.forelder= null
             return null;
         }
-             if (p.forelder.høyre==p){                                      // Hvis det er hoeyrebarn saa er foreldrenode neste
+        if (p.forelder.høyre==p){                                      // Hvis det er hoeyrebarn saa er foreldrenode neste
                 return p.forelder;
             }
-            else if (p.forelder.venstre==p && p.forelder.høyre==null){     // Hvis det er et venstrebarn uten at forelder har hoeyrebarn er forelder neste
+        else if (p.forelder.venstre==p && p.forelder.høyre==null){     // Hvis det er et venstrebarn uten at forelder har hoeyrebarn er forelder neste
                 return p.forelder;
             }
             else {
