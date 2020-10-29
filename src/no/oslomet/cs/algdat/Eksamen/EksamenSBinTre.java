@@ -156,14 +156,19 @@ public class EksamenSBinTre<T> {
     }
 
     public int fjernAlle(T verdi) {
-
         // ha en sjekk som sjekker at input ikke er null eller treet er tomt
-
-        // en while loekke som kjøres så lenge fjern metoden returnerer true
+        Objects.requireNonNull(verdi,"Kan ikke være null");
+        if (tom()){
+            return 0;
+        }
+        int antallFjernet=0;
+        // en while loekke som kjoeres saa lenge fjern metoden returnerer true
+        while (fjern(verdi)){
+            antallFjernet++;
+        }
         // inni loekken skal den telle antall ganger verdi fjernes fra treet
-
+        return antallFjernet;
         // returnerer antall
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     // Denne ble loest med inspirasjon fra kompendiet 5.2.6: Soeking etter en verdi
