@@ -12,6 +12,12 @@ Se oblig-tekst for alle krav, og husk spesielt på følgende:
 * Readme-filen her er fyllt ut som beskrevet
 
 
+# Beskrivelse av warnings
+* Får en warning pga at non ascii characters blir brukt, æøå var greit å bruke og java klassen vi fikk utlevert inneholdt disse tegnene
+* Return value i leggInn(T verdi) is never used- her har jeg stort sett brukt programkode pluss noen endringer, men metoden returnerer boolean
+* Endringer objektet og inneholder(T verdi) is never used- Endringer så jeg vi kunne se bort ifra i discussions og gjorde derfor dette. Inneholder metoden har jeg ikke benyttet meg av for å løse oppgavene.
+
+
 # Beskrivelse av oppgaveløsning (4-8 linjer/setninger per oppgave)
 
 Vi har brukt git til å dokumentere arbeidet vårt. Jeg har 16 commits totalt, og hver logg-melding beskriver det jeg har gjort av endringer.

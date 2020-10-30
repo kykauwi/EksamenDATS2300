@@ -83,6 +83,7 @@ public class EksamenSBinTre<T> {
     public boolean leggInn(T verdi) {// Bruke programkode fra kompendie for å opprette nye noder 5.2.3 a)
         Objects.requireNonNull(verdi, "Ulovlig med nullverdier!");
 
+
         Node<T> p = rot, q = null;               // p starter i roten
         int cmp = 0;                             // hjelpevariabel
 
