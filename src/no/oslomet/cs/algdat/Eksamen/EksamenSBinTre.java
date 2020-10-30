@@ -203,7 +203,7 @@ public class EksamenSBinTre<T> {
     }
 
     public void nullstill() {
-        if (tom()){             //først sjekk at treet ikke allerede er tomt
+       /* if (tom()){             //først sjekk at treet ikke allerede er tomt
             return;
         }
         Node<T> p = null;       //opprettehjelpenode ved hjelp av metoden foerstePostorden og forelder som er roten
@@ -217,19 +217,45 @@ public class EksamenSBinTre<T> {
             p = førstePostorden(rot);
             q = p.forelder;
         }
-            while (antall>0) {                      // loekke som skal kjoeres saa lenge treet ikke er tomt
+            while (antall>1) {                      // loekke som skal kjoeres saa lenge treet ikke er tomt
                 if (p == q.venstre) {               // sjekke om jeg skal fjerne venstre eller hoeyrebarn
-                    q.venstre = null;
-                    q.verdi = null;
+                    p.venstre = null;
+                    p.verdi = null;
+                    p.forelder=null;
+                    p.høyre=null;
+                    p=null;
                 } else {
-                    q.høyre = null;
-                    q.verdi = null;
+                  ////p.verdi = null;
+                    //p.forelder=null;
+                    //p.venstre=null;
                 }
+
 
                 p = førstePostorden(rot);           // sette node til neste i postorden
                 antall--;                           //oppdatere antall
             }
+        rot.verdi=null;rot.venstre=null;
+        rot.forelder=null;
+        rot.høyre=null;
         rot=null;                                   // fjerne rot
+        */
+       if (tom()){
+           return;
+       }
+       Queue<Node<T>> koe = new ArrayDeque<>();
+       koe.add(rot);
+
+       while(!koe.isEmpty()){
+           Node<T> p = koe.remove();
+           if(p.venstre!=null){
+               koe.add(p.venstre);
+           }
+           if (p.høyre!=null){
+               koe.add(p.høyre);
+           }
+       }
+       antall=0;
+       rot=null;
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {         //Benytter meg her av kompendiet sin programkode 5.1.7 g
