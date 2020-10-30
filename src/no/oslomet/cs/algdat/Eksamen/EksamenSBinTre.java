@@ -80,7 +80,7 @@ public class EksamenSBinTre<T> {
         return antall == 0;
     }
 
-    public boolean leggInn(T verdi) {// Bruke programkode fra kompendie for aa opprette nye noder 5.2.3 a)
+    public boolean leggInn(T verdi) {// Bruke programkode fra kompendie for å opprette nye noder 5.2.3 a)
         Objects.requireNonNull(verdi, "Ulovlig med nullverdier!");
 
         Node<T> p = rot, q = null;               // p starter i roten
@@ -93,9 +93,9 @@ public class EksamenSBinTre<T> {
             p = cmp < 0 ? p.venstre : p.høyre;     // flytter p
         }
 
-        // p er naa null, dvs. ute av treet, q er den siste vi passerte
+        // p er nå null, dvs. ute av treet, q er den siste vi passerte
 
-        p = new Node<>(verdi,q);                   // oppretter en ny node
+        p = new Node<>(verdi,q);                   // oppretter en ny node, lagt til q så den får tiktig peker på forelder
 
         if (q == null) rot = p;                  // p blir rotnode
         else if (cmp < 0) q.venstre = p;         // venstre barn til q
@@ -168,23 +168,23 @@ public class EksamenSBinTre<T> {
             return 0;
         }
         int antallFjernet=0;
-        while (fjern(verdi)){       // en while loekke som kjoeres saa lenge fjern metoden returnerer true
-            antallFjernet++;        // inni loekken skal den telle antall ganger verdi fjernes fra treet
+        while (fjern(verdi)){       // en while loekke som kjøres saa lenge fjern metoden returnerer true
+            antallFjernet++;        // inni løkken skal den telle antall ganger verdi fjernes fra treet
         }
         return antallFjernet;       // returnerer antall
     }
 
 
-    public int antall(T verdi) {                       // Denne ble loest med inspirasjon fra kompendiet 5.2.6 a): Soeking etter en verdi
-        if (tom()){                                    // Starter ved aa kalle paa tom() metoden for aa sjekke om treet er tomt
+    public int antall(T verdi) {                       // Denne ble løst med inspirasjon fra kompendiet 5.2.6 a): Søking etter en verdi
+        if (tom()){                                    // Starter ved å kalle paa tom() metoden for å sjekke om treet er tomt
             return 0;
         }
 
-        Node<T> p = rot;                             // Oppretter hjelpenode for aa løpe gjennom treet fra og med rot og initialiserer antall
+        Node<T> p = rot;                             // Oppretter hjelpenode for å løpe gjennom treet fra og med rot og initialiserer antall
         int antall= 0;
 
-        while(p!=null){                             // Bruker while loekke for aa loepe gjennom treet
-            int cmp = comp.compare(verdi,p.verdi);  // Bruker comp for aa sammenligne hoeyre og venstre
+        while(p!=null){                             // Bruker while løkke for å loepe gjennom treet
+            int cmp = comp.compare(verdi,p.verdi);  // Bruker comp for å sammenligne høyre og venstre
             if (cmp < 0){                           // if setninger for comp sine resultater
                 p= p.venstre;
             }
@@ -220,26 +220,26 @@ public class EksamenSBinTre<T> {
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {         //Benytter meg her av kompendiet sin programkode 5.1.7 h)
-        Objects.requireNonNull(p,"Kan ikke være null");     // Bruke object sin Not Null for aa forsikre meg om at parameter ikke er null
+        Objects.requireNonNull(p,"Kan ikke være null");     // Bruke object sin Not Null for å forsikre meg om at parameter ikke er null
 
-        while(true){                                                // Ettersom p er rot skal vi loope gjennom til vi finner det ytterste bladet til venstre
-            if (p.venstre!=null){                                   //if setninger som sjekker foerst om venstre barn er null saa hoeyre
+        while(true){                                                // Ettersom p er rot skal vi løpe gjennom til vi finner det ytterste bladet til venstre
+            if (p.venstre!=null){                                   //if setninger som sjekker først om venstre barn er null så hoeyre
                 p=p.venstre;
             }
             else if (p.høyre!=null){
                 p=p.høyre;
             }
-            else return p;                                          // returnerer noden naar venstre og hoeyre barn er null.
+            else return p;                                          // returnerer noden når venstre og høyre barn er null.
         }
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {                  // Følger prinsippene beskrevet i kompendie 5.1.7 om Postorden
-        Objects.requireNonNull(p,"Kan ikke være null");             // Bruke object sin Not Null for aa forsikre meg om at parameter ikke er null
+        Objects.requireNonNull(p,"Kan ikke være null");             // Bruke object sin Not Null for å forsikre meg om at parameter ikke er null
 
         if (p.forelder==null){                                              // returnere null om p.forelder= null
             return null;
         }
-        if (p.forelder.høyre==p){                                      // Hvis det er hoeyrebarn saa er foreldrenode neste
+        if (p.forelder.høyre==p){                                      // Hvis det er høyrebarn saa er foreldrenode neste
                 return p.forelder;
             }
         else if (p.forelder.venstre==p && p.forelder.høyre==null){     // Hvis det er et venstrebarn uten at forelder har hoeyrebarn er forelder neste
@@ -247,7 +247,7 @@ public class EksamenSBinTre<T> {
             }
             else {
                 p=p.forelder.høyre;
-                while (p.venstre!=null || p.høyre!=null){                   // while loekke for aa loepe gjennom for aa komme lengst mulig ned mot venstre
+                while (p.venstre!=null || p.høyre!=null){                   // while loekke for å løpe gjennom for å komme lengst mulig ned mot venstre
                     if (p.venstre!=null){
                         p=p.venstre;
                     }
@@ -260,9 +260,9 @@ public class EksamenSBinTre<T> {
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
-        Node<T> p = førstePostorden(rot);   // Opprette rotnode som skal være utgangspunkt for aa kalle paa nestePostorden
+        Node<T> p = førstePostorden(rot);   // Opprette rotnode som skal være utgangspunkt for å kalle på nestePostorden
 
-        while (p!=null){                    // ha loekke som kjoeres gjennom hele treet
+        while (p!=null){                    // ha løkke som kjøres gjennom hele treet
             oppgave.utførOppgave(p.verdi);  // legge til verdi i oppgaven
             p=nestePostorden(p);
         }
@@ -273,28 +273,28 @@ public class EksamenSBinTre<T> {
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
-        if (p.venstre!=null){                     //kalle paa metoden saa lenge venstre ikke er null
+        if (p.venstre!=null){                     //kalle på metoden saa lenge venstre ikke er null
             postordenRecursive(p.venstre,oppgave);
         }
-        if(p.høyre!=null){                          // kalle paa metoden saa lenge hoeyre ikke er null
+        if(p.høyre!=null){                          // kalle på metoden saa lenge hoeyre ikke er null
             postordenRecursive(p.høyre,oppgave);
         }
-        oppgave.utførOppgave(p.verdi);              // utfoer oppgave
+        oppgave.utførOppgave(p.verdi);              // utfør oppgave
     }
 
-    public ArrayList<T> serialize() {                   // Loest ved hjelp av programkode over 5.1.6 a) fra kompendiet
-        if (tom()){                                     // foerst sjekke om treet er tomt
+    public ArrayList<T> serialize() {                   // Løst ved hjelp av programkode over 5.1.6 a) fra kompendiet
+        if (tom()){                                     // først sjekke om treet er tomt
             return null;
         }
 
-        Queue<Node<T>> koe = new ArrayDeque<>();        // Opprette en koe og en liste det skal legges inn i
+        Queue<Node<T>> koe = new ArrayDeque<>();        // Opprette en kø og en liste det skal legges inn i
         ArrayList<T> returner = new ArrayList<>();
         koe.add(rot);                                   // Starte med å legge rot inn i koe
 
-        while (!koe.isEmpty()){                         // saa lenge koeen ikke er tom skal loekka kjoeres
+        while (!koe.isEmpty()){                         // så lenge koeen ikke er tom skal loekka kjoeres
             Node<T> p = koe.poll();                     // Opprette hjelpenode fra element i koeen
             returner.add(p.verdi);
-            if (p.venstre!=null){                       // if setninger som sjekker om venstre og hoeyre barn er null og legger inn i koeen
+            if (p.venstre!=null){                       // if setninger som sjekker om venstre og høyre barn er null og legger inn i køen
                 koe.add(p.venstre);
             }
             if (p.høyre != null){
@@ -307,7 +307,7 @@ public class EksamenSBinTre<T> {
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
         EksamenSBinTre<K> tre = new EksamenSBinTre<>(c);    //opprette objekt av treet
 
-        for (K p: data ){                                   // for loekke som loeper gjennom listen som tas inn og legger inn elementet
+        for (K p: data ){                                   // for løkke som løper gjennom listen som tas inn og legger inn elementet
             tre.leggInn(p);
         }
         return tre;                                          // returnerer treet
